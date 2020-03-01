@@ -166,6 +166,8 @@ To validate the model, all data was randomly shuffled into training and validati
 
 However, with the random shuffling method, you do not know if the model really fits the unknown data. Therefore, a different data set was newly created as verification data.
 
+While we got an error during creating movie file, I create run1.mp4 by using video.py on [Google colab](https://colab.research.google.com/github/KeisukeShimokawa/udacity-self-driving-cars/blob/master/part1/lesson18_create_movie.ipynb)
+
 This is final result!
 
 [autonomous driving compressed images](https://www.dropbox.com/s/uflwm2ii7sivkv8/run1.tar.gz)
