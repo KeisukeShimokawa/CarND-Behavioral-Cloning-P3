@@ -15,6 +15,15 @@ class BatchGenerator(Sequence):
     """Custom Batch Generator"""
     
     def __init__(self, lines, batch_size, target_image_dir='/opt/data/', is_both_side=False, is_flip=False):
+        """Set Data Settings
+        flag controls data length and batch size
+        
+        :param lines: csv data list
+        :param batch_size: 
+        :param target_image_dir: top directory for all data
+        :param is_both_side: whether use left/right camera or not
+        :param is_flip: whether use flip image or not
+        """
         self.lines = lines
         self.target_image_dir = target_image_dir
         self.is_both_side = is_both_side
@@ -37,6 +46,13 @@ class BatchGenerator(Sequence):
         print('batches per epoch: {}'.format(self.batches_per_epoch))
 
     def __getitem__(self, idx):
+        """Return Batch Data
+        
+        :param idx: batch index
+        
+        :return x_batch: image batch
+        :return y_batch: steering batch
+        """
         batch_from = self.batch_size * idx
         batch_to = batch_from + self.batch_size
 
@@ -56,6 +72,8 @@ class BatchGenerator(Sequence):
         return self.batches_per_epoch
 
     def on_epoch_end(self):
+        """this func is used for shuffle data for keras generator  
+        """
         pass
 
     def get_image_and_steering(self, lines, target_image_dir='/opt/IMG/', is_both_side=True, is_flip=True):
@@ -161,6 +179,13 @@ def get_fname(path):
 
 
 def get_model(im_size, cropping):
+    """Get Keras Model
+
+    :param im_size: input image shape like (160, 320, 3)
+    :param cropping: cropping area like ((y-axis), (x-axis))
+
+    :return model: keras model
+    """
     model = Sequential()
     model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape=im_size))
     model.add(Cropping2D(cropping=cropping))
