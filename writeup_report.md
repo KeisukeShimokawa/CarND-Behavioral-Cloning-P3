@@ -165,3 +165,7 @@ After the collection process, I had about 25,000 number of data points.
 To validate the model, all data was randomly shuffled into training and validation data.
 
 However, with the random shuffling method, you do not know if the model really fits the unknown data. Therefore, a different data set was newly created as verification data.
+
+This is final result!
+
+![autonomous driving](https://www.dropbox.com/s/xv0jjqtqsiolyb6/run1.mp4)
