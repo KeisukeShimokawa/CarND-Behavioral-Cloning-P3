@@ -20,3 +20,7 @@ rm /opt/data/data-normal-rev1.zip
 wget -P /opt/data/ https://www.dropbox.com/s/o27x0nfu2klndd0/data-left.zip
 unzip -o /opt/data/data-left.zip -d /opt/data/
 rm /opt/data/data-left.zip
+
+wget -P /opt/data/ https://www.dropbox.com/s/k688hd79u0mw3ao/data-valid.zip
+unzip -o /opt/data/data-valid.zip -d /opt/data/
+rm /opt/data/data-valid.zip
