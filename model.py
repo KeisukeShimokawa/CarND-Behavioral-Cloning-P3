@@ -139,11 +139,13 @@ def get_all_lines(*paths):
         path_lines = get_lines_from_file(path)
         lines.append(path_lines)
         
-        train_idx += len(lines)
-    else:
-        train_idx -= len(lines)
+        print('{} length: {}'.format(path, len(path_lines)))
         
-
+        train_idx += len(path_lines)
+    else:
+        train_idx -= len(path_lines)
+        
+    print('train index: {}'.format(train_idx))
     all_lines = combine_multiple_lines(*lines)
     return all_lines, train_idx
         
@@ -180,6 +182,8 @@ def get_model(im_size, cropping):
 def main(conf):
     # get all csv data from several simulation result
     lines, train_idx = get_all_lines(*conf['data'])
+    print('total data size: {}'.format(len(lines)))
+    print('validation data size: {}'.format(len(lines[train_idx:])))
     
     # create train/valid generator
     train_lines = lines[:train_idx]
