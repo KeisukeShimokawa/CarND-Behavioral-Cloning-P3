@@ -168,4 +168,4 @@ However, with the random shuffling method, you do not know if the model really f
 
 This is final result!
 
-![autonomous driving](https://www.dropbox.com/s/xv0jjqtqsiolyb6/run1.mp4)
+[autonomous driving](https://www.dropbox.com/s/xv0jjqtqsiolyb6/run1.mp4)
