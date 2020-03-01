@@ -134,11 +134,18 @@ def get_all_lines(*paths):
     """
 
     lines = []
+    train_idx = 0
     for path in paths:
-        lines.append(get_lines_from_file(path))
+        path_lines = get_lines_from_file(path)
+        lines.append(path_lines)
+        
+        train_idx += len(lines)
+    else:
+        train_idx -= len(lines)
+        
 
     all_lines = combine_multiple_lines(*lines)
-    return all_lines
+    return all_lines, train_idx
         
     
 def get_fname(path):
@@ -172,11 +179,11 @@ def get_model(im_size, cropping):
 
 def main(conf):
     # get all csv data from several simulation result
-    lines = get_all_lines(*conf['data'])
+    lines, train_idx = get_all_lines(*conf['data'])
     
     # create train/valid generator
-    train_lines, valid_lines = train_test_split(lines, test_size=0.2, 
-                                                random_state=0, shuffle=True)
+    train_lines = lines[:train_idx]
+    valid_lines = lines[train_idx:]
     train_batch_generator = BatchGenerator(train_lines, 
                                            batch_size=conf['batch_size'], 
                                            target_image_dir=conf['target_image_dir'],
